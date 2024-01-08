@@ -34,6 +34,12 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result)
         })
+        
+        app.post('/coffees', async (req, res) => {
+            const newCoffee = req.body;         
+            const result = await coffeesCollection.insertOne(newCoffee);
+            res.send(result)
+        })
 
         app.get('/coffees/:id', async (req, res) => {
             const id = req.params.id;
@@ -42,11 +48,15 @@ async function run() {
             res.send(result)
         })
 
-        app.post('/coffees', async (req, res) => {
-            const newCoffee = req.body;         
-            const result = await coffeesCollection.insertOne(newCoffee);
-            res.send(result)
+        app.put('/coffees/:id', async (req, res) => {
+            const id = req.params.id;
+            const updatedCoffee = req.body;
+            const filter = {_id: new ObjectId(id)};
+            const options = { upsert: true };
+            const result = await coffeesCollection.updateOne(filter, updatedCoffee, options);
+            res.send(result);
         })
+
 
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
