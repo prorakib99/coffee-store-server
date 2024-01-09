@@ -1,15 +1,29 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "./index.js",
-            "use": "@vercel/node"
-        }
+      {
+        "src": "./index.js",
+        "use": "@vercel/node"
+      }
     ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
+      {
+        "src": "/coffees",
+        "dest": "/index.js"
+      },
+      {
+        "src": "/coffees/:id",
+        "dest": "/index.js"
+      },
+      {
+        "src": "/",
+        "dest": "/index.js",
+        "methods": ["GET"]
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/"
+      }
     ]
-}
+  }
+  
