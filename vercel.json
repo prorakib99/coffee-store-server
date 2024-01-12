@@ -1,29 +1,16 @@
 {
-    "version": 2,
-    "builds": [
+  "version": 2,
+  "builds": [
       {
-        "src": "./index.js",
-        "use": "@vercel/node"
+          "src": "./index.js",
+          "use": "@vercel/node"
       }
-    ],
-    "routes": [
+  ],
+  "routes": [
       {
-        "src": "/coffees",
-        "dest": "/index.js"
-      },
-      {
-        "src": "/coffees/:id",
-        "dest": "/index.js"
-      },
-      {
-        "src": "/",
-        "dest": "/index.js",
-        "methods": ["GET"]
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/"
+          "src": "/(.*)",
+          "dest": "/", 
+          "methods": ["GET", "POST", "PATCH", "DELETE", "OPTIONS"]
       }
-    ]
-  }
-  
+  ]
+}
